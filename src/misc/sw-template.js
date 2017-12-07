@@ -401,10 +401,11 @@ function WebpackServiceWorker(params, helpers) {
     return fetching
       .catch(() => {})
       .then((response) => {
-        const isOk = response && response.ok;
-        const isRedirect = response && response.type === 'opaqueredirect';
+        // const isOk = response && response.ok;
+        // const isRedirect = response && response.type === 'opaqueredirect';
 
-        if (isOk || (isRedirect && !navigateFallbackForRedirects)) {
+        // if (isOk || (isRedirect && !navigateFallbackForRedirects)) {
+        if (response && response.status < 500) {
           return response;
         }
 
